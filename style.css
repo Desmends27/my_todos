@@ -1,0 +1,44 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    --background-main: #ccc;
+    --text: green;
+    --done: blue;
+}
+.container{
+    min-width: max-content; 
+    width: 50%;
+    border: 2px solid blue;
+    margin: auto;
+    text-align: center;
+}
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+}
+.todo_container{
+    margin: auto;
+   border: 2px solid black;;
+   width: 50%;
+}
+
+.todo_container label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  

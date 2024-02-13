@@ -3,20 +3,24 @@
 :root{
     --main-background_color: #ccc
     --background-color: brown;
-    --checkbox-color: rgba(165, 42, 42, 0.932);
-    --text: brown;
-    --task-background: red;
+    --mainbg_color: #61452e;
+    --text: #61452e;
+    --task-background: #c3a27f;
+    --header-text: #664e3a;
 }
 
 body {
     background-color: var(--main-background_color);
     font-family: Indie Flower;
+    font-weight: bolder;
+  }
+  .header {
+    color: var(--header-text);
   }
 .container{
     margin: auto;
     min-width: 50%;
     width: 60%;
-    border: 2px solid yellow;
     text-align: center;
     margin-top: 5em;
 }
@@ -40,13 +44,13 @@ body {
     background-color: var(--task-background);
     border-radius: 15px;
     min-width: 50%;
-    max-width: 80%;
+    max-width: 60%;
 }
 .c-custom-checkbox{
     display: block;
     position: relative;
     cursor: pointer;
-    color: var(--checkbox-color);
+    color: var(--mainbg_color);
 }
 .c-custom-checkbox svg{
     display: inline-block;
@@ -54,8 +58,10 @@ body {
     margin-bottom: .2em;
     width: 2em;
     height: 2em;
-    border: 2px solid currentColor;
+    border: 2px solid var(--mainbg_color);
     border-radius: 200px;
+    color: black;
+    background-color: var(--mainbg_color);
 }
 .c-custom-checkbox input[type="checkbox"] {
     opacity: 0;
@@ -72,15 +78,21 @@ body {
     stroke-dashoffset: 0;
     stroke: currentColor;
 }
-.c-custom-checkbox input[type="checkbox"]:checked + svg + #todo {
+.c-custom-checkbox input[type="checkbox"]:checked + svg{
     text-decoration: line-through;
 }
 .c-custom-checkbox input[type="checkbox"]:focus:not(:focus-visible) + svg {
     outline: none;
 }
 .notes{
-    background-color: red;
+    background-color:var(--mainbg_color);
     padding: 6em;
     width: 35%;
     margin: auto;
+    border: 200px;
+}
+@media (min-width: 50em) {
+    .description {
+
+    }
 }

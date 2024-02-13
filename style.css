@@ -35,6 +35,10 @@ body {
     overflow: hidden;
     margin-bottom: 1em;
 }
+.tasks_container{
+    text-align: center;
+    margin: auto;
+}
 .description{
     font-size: 2em;
     margin: 0;
@@ -43,8 +47,7 @@ body {
     word-wrap: break-word;
     background-color: var(--task-background);
     border-radius: 15px;
-    min-width: 50%;
-    max-width: 60%;
+    width: 70%;
 }
 .c-custom-checkbox{
     display: block;
@@ -91,8 +94,9 @@ body {
     margin: auto;
     border: 200px;
 }
-@media (min-width: 50em) {
-    .description {
 
+@media (min-width: 60em) {
+    .description{
+        max-width: 50%;
     }
 }

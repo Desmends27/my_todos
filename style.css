@@ -1,102 +1,83 @@
-@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
-
-:root{
-    --main-background_color: #ccc
-    --background-color: brown;
-    --mainbg_color: #61452e;
-    --text: #61452e;
-    --task-background: #c3a27f;
-    --header-text: #664e3a;
+*{
+    box-sizing: border-box;
 }
-
-body {
-    background-color: var(--main-background_color);
-    font-family: Indie Flower;
-    font-weight: bolder;
-  }
-  .header {
-    color: var(--header-text);
-  }
-.container{
+/*
+    ++++++++++++++
+    GENERIC STYLES
+    ++++++++++++++
+*/
+body{
+    background: url("./imgs/mobile2.png") no-repeat;
+}
+form{
+    width: 70%;
     margin: auto;
-    min-width: 50%;
-    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10rem;
     text-align: center;
-    margin-top: 5em;
+    border: 2px solid yellow;
+    border-top: none;
 }
-.task{
+ul{
+    margin: 0 1rem 1rem 0;
+    list-style: none;
+}
+li{
+    margin: 0;
+}
+.header{
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+/***
+    CUSTOM CHECKBOX STYLES.
+****/
+.customr
+.add_task{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2em;
-    width: 100%;
-    margin: auto;
-    padding: 0;
-    overflow: hidden;
-    margin-bottom: 1em;
-}
-.tasks_container{
-    text-align: center;
-    margin: auto;
-}
-.description{
-    font-size: 2em;
-    margin: 0;
-    color: var(--text);
-    overflow: auto;
-    word-wrap: break-word;
-    background-color: var(--task-background);
-    border-radius: 15px;
-    width: 70%;
-}
-.c-custom-checkbox{
-    display: block;
-    position: relative;
-    cursor: pointer;
-    color: var(--mainbg_color);
-}
-.c-custom-checkbox svg{
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: .2em;
-    width: 2em;
-    height: 2em;
-    border: 2px solid var(--mainbg_color);
-    border-radius: 200px;
-    color: black;
-    background-color: var(--mainbg_color);
-}
-.c-custom-checkbox input[type="checkbox"] {
-    opacity: 0;
-    width: 2em;
-    height: 2em;
-    position: absolute;
-    top: 0.1em;
-    left: 0.1em;
-}
-.c-custom-checkbox svg path {
-    transition: stroke-dashoffset .4s linear;
-}
-.c-custom-checkbox input[type="checkbox"]:checked + svg path {
-    stroke-dashoffset: 0;
-    stroke: currentColor;
-}
-.c-custom-checkbox input[type="checkbox"]:checked + svg{
-    text-decoration: line-through;
-}
-.c-custom-checkbox input[type="checkbox"]:focus:not(:focus-visible) + svg {
-    outline: none;
-}
-.notes{
-    background-color:var(--mainbg_color);
-    padding: 6em;
-    width: 35%;
-    margin: auto;
-    border: 200px;
+    gap: 1rem;
 }
 
+.add_task input{
+    color:rgb(158, 88, 158);
+    padding: 14px; 
+    height:0.3em;
+    border-radius: 25px;
+    transition: all 0.7s ease-in-out 0s;
+    font-weight: 600;
+}
+.add_btn{
+    display: block;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
+    background-color: rgb(108, 229, 208);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+.add_btn svg{
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+
+}
+@media (min-width: 40em) {
+    body{
+        background: url("./imgs/pc.png") no-repeat;
+    }
+}
 @media (min-width: 60em) {
-    .description{
-        max-width: 50%;
+    form{
+        width: 40%;
+    }
+    .add_task input{
+        height: 0.7em;
     }
 }

@@ -7,7 +7,7 @@
     ++++++++++++++
 */
 body{
-    background: url("./imgs/mobile2.png") no-repeat;
+    background: url(".) no-repeat;
 }
 form{
     width: 70%;
@@ -35,7 +35,7 @@ li{
 /***
     CUSTOM CHECKBOX STYLES.
 ****/
-.customr
+
 .add_task{
     display: flex;
     align-items: center;

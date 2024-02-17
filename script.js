@@ -1,66 +1,169 @@
-// let add_button = document.querySelector('.add button');
-// let checkbox = document.querySelector('.c-custom-checkbox input[type="checkbox"]');
-// add_button.onclick = createTask;
-// let task_number = 0;
+/*
+@TODO: ADD DATE FUNCTIONALITY AND SYNC WITH GOOGLE API
+*/
 
-// function createTask() {
-//     let description = prompt("Enter new task");
-//     let task_container = document.querySelector('.tasks_container');
-//     let new_task = document.createElement('div');
+let add_button = document.querySelector('.add button');
+let task_number = 0;
+let add_btn = document.querySelector('.add_btn');
+let new_task_input = document.querySelector('.add_task input');
+let edit_target = "";
+let edit_text = false;
+new_task_input.addEventListener('keydown', (event) => {
+    if (event.code == "Enter")
+    {
+        if (event.target.value.length !== 0 ){
+            if(!edit_text)
+            {
+                createTask(new_task_input.value);
+                new_task_input.value = "";
+                console.log(`crate task edit ${edit_text}`);
+            }
+        }
 
-//     new_task.classList.add('task');
-
-//     let label = document.createElement('label');
-//     label.setAttribute('for', 'done');
-//     label.classList.add('c-custom-checkbox');
-
-
-//     let input = document.createElement('input');
-//     input.setAttribute('type', 'checkbox');
-//     input.setAttribute('name', 'done');
-
-//     console.log(input);
-//     let svg = document.createElementNS("http://www.w3.org/2000/svg",'svg');
-//     svg.setAttribute("viewBox", "0 0 60 40");
-//     svg.setAttribute("aria-hidden", "true");
-//     svg.setAttribute("focusable", "false");
+    }
+})
 
 
-//     let path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-//     path.setAttribute('d', 'M21,2 C13.4580219,4.16027394 1.62349378,18.3117469 3,19 C9.03653312,22.0182666 25.2482171,10.3758914 30,8 C32.9363621,6.53181896 41.321398,1.67860195 39,4 C36.1186011,6.8813989 3.11316157,27.1131616 5,29 C10.3223659,34.3223659 30.6434647,19.7426141 35,18 C41.2281047,15.5087581 46.3445303,13.6554697 46,14 C42.8258073,17.1741927 36.9154967,19.650702 33,22 C30.3136243,23.6118254 17,31.162498 17,34 C17,40.4724865 54,12.4064021 54,17 C54,23.7416728 34,27.2286213 34,37');
-//     path.setAttribute('stroke-width', '4');
-//     path.setAttribute('fill', 'none');
-//     path.setAttribute('stroke-dasharray', '270');
-//     path.setAttribute('stroke-dashoffset', '270');
+document.addEventListener('click', (event)=>{
+    if (event.target && event.target.classList.contains('delete')){
+        event.target.closest('.task').remove();
+        console.log(event.target.parentElement)
+    }
+})
+
+document.addEventListener('change', (event) => {
+    if (event.target && event.target.type === 'checkbox' && event.target.name == 'done'){
+        let text = event.target.parentElement.nextElementSibling;
+        text.classList.toggle('strike');
+    }
+})
+
+document.addEventListener('click', (event)=>{
+    console.log(event.target);
+    if(event.target && event.target != document.body && event.target.parentElement.classList.contains('edit')){
+        input_hide()
+        task_text = event.target.parentElement.closest('.task').querySelector('.description').innerText;
+        new_task_input.value = task_text;
+        edit_target = event.target.parentElement.closest('.task').querySelector('.description');
+        edit_text = true;
+        new_task_input.addEventListener('keydown', (event) => {
+            if (event.code == "Enter")
+            {
+                if (edit_text){
+                    edit_target.innerText = event.target.value;
+                    event.target.value = "";
+                    edit_text = false;
+                }
+            }
+        })
+        
+    }
+})
 
 
-//     svg.appendChild(path)
-//     label.appendChild(input);
-//     label.appendChild(svg);
+function createTask(task_text) {
+        task_number++;
+        //create task id = task + task_number
+        const task_id = "task" + task_number;
+        // Create the label element
+        const task_container = document.querySelector('.tasks_container ul');
+        const label = document.createElement('label');
+        label.setAttribute('for', task_id);
+        label.classList.add('c-custom-checkbox');
+        let task = document.createElement("li");
 
-//     let task_content = document.createElement('p');
-//     task_content.classList.add('description');
-//     task_content.innerText = description;
+        task.setAttribute("class","task row");
+        // Create the input element
+        const input = document.createElement('input');
+        input.setAttribute('type', 'checkbox');
+        input.setAttribute('name', 'done');
+        input.setAttribute('id', task_id);
 
-//     new_task.appendChild(label);
-//     new_task.appendChild(task_content);
-//     if (description != null && description != undefined){
-//         task_number++;
-//         let task_id = description.substring(0,2) + task_number;
-//         new_task.setAttribute('id', task_id);
-//         if (task_container.childElementCount !=  0){
-//             task_container.prepend(new_task);
-//         }
-//         else {
-//             task_container.append(new_task);
-//         }
-//     }
-// }
+        // Create the svg element
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '32');
+        svg.setAttribute('height', '25');
+        svg.setAttribute('viewBox', '0 0 72 72');
+        svg.setAttribute('id', 'emoji');
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 
-let checkbox = document.querySelectorAll('.task input');
-let text = document.querySelector('.description');
-checkbox.forEach(checkbox => {
-    checkbox.addEventListener("change", () => {
-            text.classList.toggle('strike')
-    })
+        // Create the g elements inside svg
+        const gColor = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        gColor.setAttribute('id', 'color');
+        const gLine = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        gLine.setAttribute('id', 'line');
+
+        // Create the path elements inside gColor
+        const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path1.setAttribute('fill', '#B1CC33');
+        path1.setAttribute('stroke', 'none');
+        path1.setAttribute('d', 'M53.1887,52.843H20.5794c-0.3752,0-0.6794-0.2955-0.6794-0.66v-31.68c0-0.3645,0.3042-0.66,0.6794-0.66 h21.5062h1.2918h2.0097h6.6745h1.1271c0.3752,0,0.6794,0.2955,0.6794,0.66v31.68C53.8681,52.5475,53.5639,52.843,53.1887,52.843z');
+        const path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path2.setAttribute('fill', '#FFFFFF');
+        path2.setAttribute('stroke', 'none');
+        path2.setAttribute('stroke-linecap', 'round');
+        path2.setAttribute('stroke-linejoin', 'round');
+        path2.setAttribute('stroke-miterlimit', '10');
+        path2.setAttribute('stroke-width', '2');
+        path2.setAttribute('d', 'M30.66,30.538c-1.85-2.61-6.18-0.11-4.32,2.52c3.19,4.51,5.87,9.25,7.91,14.38c0.84,2.09,4.23,2.65,4.83,0 c2.83-12.6,8.21-27.17,20.68-33c2.91-1.36,0.38-5.67-2.52-4.32c-11.43,5.35-17.68,17.36-21.23,29.25 C34.45,36.318,32.68,33.378,30.66,30.538z');
+        const path3 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path3.setAttribute('fill', 'none');
+        path3.setAttribute('stroke', '#d22f27');
+        path3.setAttribute('stroke-linecap', 'round');
+        path3.setAttribute('stroke-linejoin', 'round');
+        path3.setAttribute('stroke-miterlimit', '10');
+        path3.setAttribute('stroke-width', '2');
+        path3.setAttribute('d', 'M47.6549,25.4633');
+
+        // Append path elements to gColor
+        gColor.appendChild(path1);
+        gColor.appendChild(path2);
+        gColor.appendChild(path3);
+
+        // Append gColor and gLine to svg
+        svg.appendChild(gColor);
+        svg.appendChild(gLine);
+
+        // Append input and svg to label
+        label.appendChild(input);
+        label.appendChild(svg);
+
+        const description = document.createElement('p');
+        description.setAttribute("class", "description");
+        description.innerText = task_text;
+
+        const modify = document.createElement("div");
+        modify.setAttribute("class", "modify row");
+        edit = document.createElement("button");
+        edit.setAttribute("class", "edit");
+        edit_span  = document.createElement("span");
+        edit_span.setAttribute("class", "material-symbols-outlined");
+        edit_span.innerText = "edit"
+        edit.appendChild(edit_span);
+
+        del = document.createElement("button");
+        del.setAttribute("class", "delete");
+        del.innerHTML = "&times";
+
+
+        modify.append(edit);
+        modify.append(del);
+
+        task.appendChild(label);
+        task.appendChild(description);
+        task.appendChild(modify);
+
+
+        task_container.appendChild(task);
+}
+
+function input_hide(){
+    add_btn.classList.toggle('center');
+    new_task_input.classList.toggle('hide');
+}
+add_btn.addEventListener('click', ()=>
+{
+    add_btn.classList.toggle('center');
+    new_task_input.classList.toggle('hide');
+    new_task_input.value = "";
 })

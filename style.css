@@ -7,52 +7,160 @@
     ++++++++++++++
 */
 body{
-    background: url(".) no-repeat;
-}
-form{
-    width: 70%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10rem;
-    text-align: center;
-    border: 2px solid yellow;
-    border-top: none;
+    background: url("/imgs/pc.png") no-repeat;
 }
 ul{
-    margin: 0 1rem 1rem 0;
+    margin: 0;
+    padding-left: 0;
     list-style: none;
 }
 li{
+    margin-left: 0;
     margin: 0;
 }
-.header{
-    font-size: 1.5em;
-    font-weight: bolder;
-}
-/***
-    CUSTOM CHECKBOX STYLES.
-****/
 
+.header{
+    margin-top: 0;
+}
+.container{
+    width: 75%;
+    min-width: 60%;
+    margin: auto;
+    margin-top: 10rem;
+    text-align: center;
+    border: 2px solid white;
+    border-top: none;
+    padding: 1em 2em 1em 2em;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+/*
+++++++++++++++++
+    TASK STYLES
+++++++++++++++++
+*/
+.tasks_container{
+    padding: 1em;
+}
+.tasks_container ul{
+    border: 1px solid white;
+}
+.task{
+    gap: 2em;
+    border-bottom: 1px solid wheat;
+    margin: auto;
+    color: white;
+    padding: 0 0.2em ;
+}
+
+.description {
+    font-size: 0.9em;
+    width: 55%;
+
+}
+.modify{
+    margin-right: 1rem;
+    margin-left: auto;
+    width: 20%;
+    font-size: 1em;
+    justify-content: space-between;
+}
+.modify button{
+    width: 45%;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+.edit span{
+    font-size: 1.4em;
+}
+.delete{
+    font-size: 1em;
+}
+.c-custom-checkbox{
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+.strike {
+    color:turquoise;
+    transition: color 0.3s ease; 
+    text-decoration: line-through;
+}
+/* Custom checkbox styles */
+.c-custom-checkbox input[type="checkbox"]{
+    opacity: 1;
+    cursor: pointer;
+    width: 2em;
+    height: 1.2em;
+    display: block;
+    position: relative;
+    transition: opacity 0.3s ease; /* Add transition for opacity */
+}
+.c-custom-checkbox svg{
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: .2em;
+    width: 2em;
+    height: 2em;
+    border-radius: 200px;
+    transition: opacity 0.3s ease; /* Add transition for opacity */
+}
+.c-custom-checkbox input[type="checkbox"] {
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    top: 0.18em;
+    left: 0.1em;
+}
+.c-custom-checkbox input[type="checkbox"] + svg{
+   opacity: 0;
+}
+.c-custom-checkbox input[type="checkbox"]:checked + svg{
+    opacity: 1;
+}
+.c-custom-checkbox input[type="checkbox"]:checked{
+    opacity: 0;
+}
+.c-custom-checkbox input[type="checkbox"]:focus:not(:focus-visible) + svg {
+    outline: none;
+}
+/*
+++++++++++++++++++++++
+    TASK ADDITION STYLES
++++++++++++++++++++++++
+*/
 .add_task{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 1rem;
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 4em;
+    width:90%;
+    margin: auto;
+    margin-top: 1.5rem;
 }
 
 .add_task input{
     color:rgb(158, 88, 158);
     padding: 14px; 
-    height:0.3em;
-    border-radius: 25px;
-    transition: all 0.7s ease-in-out 0s;
+    height:2em;
+    border-radius: 15px;
+    transition: all 0.7s ease-out  .4s ease-out;
     font-weight: 600;
+    width: 97%;
+    /* display: none; */
 }
+
 .add_btn{
-    display: block;
     margin: auto;
     width: 3rem;
     height: 3rem;
@@ -60,24 +168,27 @@ li{
     border-radius: 50%;
     border: none;
     cursor: pointer;
+    position: absolute;
+    right: 0;
 }
 .add_btn svg{
-    width: 2rem;
-    height: 2rem;
+    width: 2.2rem;
+    height: 2.2rem;
     font-size: 1.5rem;
     font-weight: 900;
+}
 
-}
-@media (min-width: 40em) {
-    body{
-        background: url("./imgs/pc.png") no-repeat;
-    }
-}
 @media (min-width: 60em) {
-    form{
-        width: 40%;
+    .container{
+        width: 35%;
     }
     .add_task input{
         height: 0.7em;
+    }
+}
+
+@media (min-width: 10em) and ({
+    body{
+        width: ;
     }
 }

@@ -6,8 +6,17 @@
     GENERIC STYLES
     ++++++++++++++
 */
-body{
-    background: url("/imgs/pc.png");
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    background: url("./imgs/mobile.png") no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-color: rebeccapurple;
 }
 ul{
     margin: 0;
@@ -191,6 +200,11 @@ li{
     transition: 1ms ease;
 }
 @media (min-width: 800px) {
+    html{
+        background: url("./imgs/pc.png") no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
     .container{
         width: 35%;
     }

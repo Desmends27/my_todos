@@ -9,7 +9,7 @@ let new_task_input = document.querySelector('.add_task input');
 let edit_target = "";
 let edit_text = false;
 new_task_input.addEventListener('keydown', (event) => {
-    if (event.code == "Enter")
+    if (event.code == "Enter" || event.code == "Go" || event.keyCode === 13 )
     {
         if (event.target.value.length !== 0 ){
             if(!edit_text)
@@ -47,7 +47,7 @@ document.addEventListener('click', (event)=>{
         edit_target = event.target.parentElement.closest('.task').querySelector('.description');
         edit_text = true;
         new_task_input.addEventListener('keydown', (event) => {
-            if (event.code == "Enter")
+            if (event.code == "Enter" || event.code == "Go" || event.keyCode === 13 )
             {
                 if (edit_text){
                     edit_target.innerText = event.target.value;
